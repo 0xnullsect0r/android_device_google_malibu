@@ -1,0 +1,29 @@
+type gnss_manager, domain;
+type gnss_manager_exec, exec_type, file_type, vendor_file_type;
+type gnss_manager_service, hal_service_type, protected_service, service_manager_type;
+
+hal_client_domain(gnss_manager, hal_contexthub)
+
+add_service(gnss_manager, gnss_manager_service)
+
+binder_call(gnss_manager, gnss_daemon)
+binder_call(gnss_manager, hal_contexthub_server)
+binder_call(gnss_manager, hal_gnss_default)
+binder_call(gnss_manager, servicemanager)
+
+binder_use(gnss_manager)
+
+init_daemon_domain(gnss_manager)
+
+set_prop(gnss_manager, vendor_gps_prop)
+
+allow gnss_manager gnss_daemon:unix_stream_socket connectto;
+allow gnss_manager gnss_fw_log:unix_stream_socket connectto;
+allow gnss_manager hal_contexthub_service:service_manager find;
+allow gnss_manager proc_tmi_log:file r_file_perms;
+allow gnss_manager radio_vendor_data_file:dir create_dir_perms;
+allow gnss_manager radio_vendor_data_file:file create_file_perms;
+allow gnss_manager sscoredump_device:chr_file rw_file_perms;
+allow gnss_manager sysfs_gcdd_dev_stat:file rw_file_perms;
+allow gnss_manager vendor_gps_file:dir create_dir_perms;
+allow gnss_manager vendor_gps_file:file create_file_perms;

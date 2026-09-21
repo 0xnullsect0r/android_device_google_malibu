@@ -1,0 +1,8 @@
+type muxreport, domain;
+type muxreport_exec, exec_type, file_type, vendor_file_type;
+
+init_daemon_domain(muxreport)
+
+set_prop(muxreport, vendor_mtk_radio_prop)
+
+allow muxreport sysfs_modem:file w_file_perms;

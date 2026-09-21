@@ -1,1 +1,1 @@
-type pixelntnservice_app, domain;
+type pixelntnservice_app, coredomain, domain;

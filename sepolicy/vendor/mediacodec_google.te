@@ -7,15 +7,28 @@ hal_server_domain(mediacodec_google, hal_codec2)
 
 add_service(mediacodec_google, eco_service)
 
+binder_call(mediacodec_google, edgetpu_tachyon_server)
+binder_call(mediacodec_google, edgetpu_vendor_server)
 binder_call(mediacodec_google, hal_camera_default)
+
+get_prop(mediacodec_google, graphics_config_prop)
+get_prop(mediacodec_google, vendor_edgetpu_runtime_prop)
+get_prop(mediacodec_google, vendor_hetero_runtime_prop)
+get_prop(mediacodec_google, vendor_tflite_delegate_prop)
 
 init_daemon_domain(mediacodec_google)
 
+allow mediacodec_google appdomain:memfd_file { getattr map read write };
 allow mediacodec_google dmabuf_system_heap_device:chr_file r_file_perms;
+allow mediacodec_google edgetpu_device:chr_file rw_file_perms;
+allow mediacodec_google edgetpu_tachyon_server:memfd_file { map read write };
+allow mediacodec_google edgetpu_tachyon_service:service_manager find;
 allow mediacodec_google gpu_device:chr_file rw_file_perms;
+allow mediacodec_google sysfs_gpu:file r_file_perms;
+allow mediacodec_google vendor_image_processing_hal_service:service_manager find;
 allow mediacodec_google video_device:chr_file { ioctl map open read write };
 
-neverallow mediacodec_google { domain userdebug_or_eng(`-su') }:tcp_socket *;
+neverallow mediacodec_google domain:tcp_socket *;
 neverallow mediacodec_google domain:{ rawip_socket udp_socket } *;
 neverallow mediacodec_google file_type:file execute_no_trans;
 neverallow mediacodec_google fs_type:file execute_no_trans;

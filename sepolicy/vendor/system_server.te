@@ -1,5 +1,9 @@
 binder_call(system_server, battery_mitigation)
+binder_call(system_server, con_monitor_app)
+binder_call(system_server, gnss_daemon)
 binder_call(system_server, hal_camera_default)
-binder_call(system_server, hal_uwb_vendor_default)
+binder_call(system_server, lbs_service)
 
 allow system_server hal_battery_mitigation_service:service_manager find;
+allow system_server hal_lbs_service:service_manager find;
+allow system_server hal_vendor_lbs_external_service:service_manager find;

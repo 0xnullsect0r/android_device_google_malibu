@@ -1,0 +1,4 @@
+type set_fg_model, domain;
+type set_fg_model_exec, exec_type, file_type, vendor_file_type;
+
+init_daemon_domain(set_fg_model)

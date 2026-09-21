@@ -1,0 +1,15 @@
+type metad, domain;
+type metad_exec, exec_type, file_type, vendor_file_type;
+
+net_domain(metad)
+
+get_prop(metad, vendor_mtk_tool_ipaddr_prop)
+
+init_daemon_domain(metad)
+
+set_prop(metad, vendor_meta_prop)
+set_prop(metad, vendor_mtk_radio_prop)
+
+allow metad mnt_vendor_file:dir search;
+allow metad mtk_wwan_device:chr_file rw_file_perms;
+allow metad serial_device:chr_file rw_file_perms;

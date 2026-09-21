@@ -1,0 +1,19 @@
+pixel_bugreport(dump_modem_syslog)
+
+allow dump_modem_syslog mdl_coll_data_vendor_file:dir search;
+allow dump_modem_syslog mdl_coll_data_vendor_file:file r_file_perms;
+allow dump_modem_syslog mnt_vendor_file:dir search;
+allow dump_modem_syslog modem_protected_file:dir r_dir_perms;
+allow dump_modem_syslog modem_protected_file:file r_file_perms;
+allow dump_modem_syslog proc_tmi_log:file r_file_perms;
+allow dump_modem_syslog radio_vendor_data_file:dir create_dir_perms;
+allow dump_modem_syslog radio_vendor_data_file:file create_file_perms;
+allow dump_modem_syslog sscoredump_vendor_data_coredump_file:dir getattr;
+allow dump_modem_syslog sscoredump_vendor_data_crashinfo_file:dir r_dir_perms;
+allow dump_modem_syslog sscoredump_vendor_data_crashinfo_file:file r_file_perms;
+allow dump_modem_syslog sscoredump_vendor_data_logcat_file:dir getattr;
+allow dump_modem_syslog sysfs_kernel_metrics:dir r_dir_perms;
+allow dump_modem_syslog sysfs_kernel_metrics:file r_file_perms;
+allow dump_modem_syslog vendor_nvdata_file:dir r_dir_perms;
+allow dump_modem_syslog vendor_nvdata_file:file r_file_perms;
+allow dump_modem_syslog vendor_toolbox_exec:file execute_no_trans;

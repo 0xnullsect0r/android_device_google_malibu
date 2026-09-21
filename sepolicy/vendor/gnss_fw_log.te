@@ -1,0 +1,9 @@
+type gnss_fw_log, domain;
+type gnss_fw_log_exec, exec_type, file_type, vendor_file_type;
+
+init_daemon_domain(gnss_fw_log)
+
+allow gnss_fw_log mtk_wwan_device:chr_file { open read write };
+allow gnss_fw_log self:netlink_kobject_uevent_socket { bind create read setopt };
+allow gnss_fw_log vendor_gps_file:dir create_dir_perms;
+allow gnss_fw_log vendor_gps_file:file create_file_perms;

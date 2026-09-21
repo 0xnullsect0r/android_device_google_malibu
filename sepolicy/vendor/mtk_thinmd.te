@@ -1,0 +1,36 @@
+type mtk_thinmd, domain;
+type mtk_thinmd_exec, exec_type, file_type, vendor_file_type;
+type sysfs_imei, fs_type, sysfs_type;
+
+get_prop(mtk_thinmd, vendor_nvram_prop)
+
+init_daemon_domain(mtk_thinmd)
+
+set_prop(mtk_thinmd, vendor_modem_prop)
+set_prop(mtk_thinmd, vendor_thinmd_prop)
+
+wakelock_use(mtk_thinmd)
+
+allow mtk_thinmd mdl_coll_data_vendor_file:dir r_dir_perms;
+allow mtk_thinmd mdl_coll_data_vendor_file:file r_file_perms;
+allow mtk_thinmd mnt_vendor_file:dir search;
+allow mtk_thinmd modem_protected_file:dir r_dir_perms;
+allow mtk_thinmd modem_protected_file:file r_file_perms;
+allow mtk_thinmd mtk_wwan_device:chr_file rw_file_perms;
+allow mtk_thinmd pcie_coredump_data_file:dir r_dir_perms;
+allow mtk_thinmd pcie_coredump_data_file:file r_file_perms;
+allow mtk_thinmd persist_file:dir search;
+allow mtk_thinmd persist_file:file r_file_perms;
+allow mtk_thinmd proc_tmi_log:file r_file_perms;
+allow mtk_thinmd radio_vendor_data_file:dir create_dir_perms;
+allow mtk_thinmd radio_vendor_data_file:file create_file_perms;
+allow mtk_thinmd self:netlink_kobject_uevent_socket { bind create read setopt };
+allow mtk_thinmd sscoredump_vendor_data_coredump_file:dir rw_dir_perms;
+allow mtk_thinmd sscoredump_vendor_data_coredump_file:file create_file_perms;
+allow mtk_thinmd sscoredump_vendor_data_crashinfo_file:dir rw_dir_perms;
+allow mtk_thinmd sscoredump_vendor_data_crashinfo_file:file create_file_perms;
+allow mtk_thinmd sysfs_chosen:dir search;
+allow mtk_thinmd sysfs_imei:file r_file_perms;
+allow mtk_thinmd sysfs_modem:file r_file_perms;
+allow mtk_thinmd vendor_nvdata_file:dir r_dir_perms;
+allow mtk_thinmd vendor_nvdata_file:file r_file_perms;

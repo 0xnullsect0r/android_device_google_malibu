@@ -1,0 +1,5 @@
+get_prop(postinstall, vendor_nos_citadel_init_state)
+get_prop(postinstall, vendor_nos_citadel_postinstall_state)
+get_prop(postinstall, vendor_nos_citadel_updates_tried)
+
+set_prop(postinstall, ctl_start_prop)

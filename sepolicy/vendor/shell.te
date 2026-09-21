@@ -1,3 +1,6 @@
+binder_call(shell, imagecodec_google)
+
 get_prop(shell, vendor_intelligence_prop)
+get_prop(shell, vendor_modem_info_prop)
 
 dontaudit shell sysfs_wlc:dir search;

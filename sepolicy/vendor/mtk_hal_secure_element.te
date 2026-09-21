@@ -1,0 +1,12 @@
+type mtk_hal_secure_element, domain;
+type mtk_hal_secure_element_exec, exec_type, file_type, vendor_file_type;
+
+hal_server_domain(mtk_hal_secure_element, hal_secure_element)
+
+binder_call(mtk_hal_secure_element, rild)
+
+get_prop(mtk_hal_secure_element, radio_control_prop)
+
+init_daemon_domain(mtk_hal_secure_element)
+
+allow mtk_hal_secure_element hal_vendor_radio_external_service:service_manager find;

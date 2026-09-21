@@ -1,0 +1,21 @@
+type mdl_coll, domain;
+type mdl_coll_exec, exec_type, file_type, vendor_file_type;
+
+net_domain(mdl_coll)
+
+get_prop(mdl_coll, vendor_modem_prop)
+get_prop(mdl_coll, vendor_mtk_tool_ipaddr_prop)
+
+init_daemon_domain(mdl_coll)
+
+set_prop(mdl_coll, vendor_mtk_mdl_coll_restart_type_prop)
+
+allow mdl_coll mdl_coll_data_vendor_file:dir create_dir_perms;
+allow mdl_coll mdl_coll_data_vendor_file:file create_file_perms;
+allow mdl_coll mnt_vendor_file:dir search;
+allow mdl_coll mtk_wwan_device:chr_file rw_file_perms;
+allow mdl_coll radio_vendor_data_file:dir create_dir_perms;
+allow mdl_coll radio_vendor_data_file:file create_file_perms;
+allow mdl_coll self:netlink_kobject_uevent_socket { bind create read setopt };
+allow mdl_coll serial_device:chr_file rw_file_perms;
+allow mdl_coll sysfs_modem:file r_file_perms;

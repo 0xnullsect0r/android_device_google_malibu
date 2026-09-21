@@ -1,3 +1,0 @@
-type vendor_silentlogging_remote_app, domain;
-
-app_domain(vendor_silentlogging_remote_app)

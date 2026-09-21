@@ -1,2 +1,0 @@
-type disable-contaminant-detection-sh, domain;
-type disable-contaminant-detection-sh_exec, exec_type, file_type, vendor_file_type;

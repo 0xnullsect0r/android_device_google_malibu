@@ -1,8 +1,7 @@
-binder_call(priv_app, hal_plat_security)
+binder_call(priv_app_36, hal_plat_security)
 
-allow priv_app hal_plat_security_service:service_manager find;
-allow priv_app intelligence_data_file:dir r_dir_perms;
-allow priv_app intelligence_data_file:file r_file_perms;
-allow priv_app proc_version:file getattr;
-
-dontaudit priv_app hal_bluetooth_coexistence_service:service_manager find;
+allow priv_app proc_version:file { getattr open };
+allow priv_app_36 hal_plat_security_service:service_manager find;
+allow priv_app_36 intelligence_data_file:dir r_dir_perms;
+allow priv_app_36 intelligence_data_file:file r_file_perms;
+allow priv_app_36 proc_version:file getattr;

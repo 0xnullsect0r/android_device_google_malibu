@@ -1,0 +1,22 @@
+type imsmediahaldaemon, domain;
+type imsmediahaldaemon_exec, exec_type, file_type, vendor_file_type;
+
+hal_server_domain(imsmediahaldaemon, hal_telephony)
+
+binder_call(imsmediahaldaemon, radio)
+binder_call(imsmediahaldaemon, servicemanager)
+
+binder_use(imsmediahaldaemon)
+
+get_prop(imsmediahaldaemon, vendor_mtk_radio_prop)
+
+init_daemon_domain(imsmediahaldaemon)
+
+set_prop(imsmediahaldaemon, vendor_imsmedia_prop)
+
+allow imsmediahaldaemon imsstack_app:fd use;
+allow imsmediahaldaemon imsstack_app:udp_socket { getattr read write };
+allow imsmediahaldaemon mtk_wwan_device:chr_file rw_file_perms;
+allow imsmediahaldaemon self:netlink_route_socket { create nlmsg_read nlmsg_readpriv read write };
+allow imsmediahaldaemon su:fd use;
+allow imsmediahaldaemon sysfs_modem:file rw_file_perms;

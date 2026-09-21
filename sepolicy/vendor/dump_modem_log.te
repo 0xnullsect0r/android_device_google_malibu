@@ -1,0 +1,10 @@
+pixel_bugreport(dump_modem_log)
+
+hal_client_domain(dump_modem_log, hal_modem_logging)
+
+binder_use(dump_modem_log)
+
+allow dump_modem_log mdl_coll_data_vendor_file:dir r_dir_perms;
+allow dump_modem_log mdl_coll_data_vendor_file:file r_file_perms;
+allow dump_modem_log radio_vendor_data_file:dir create_dir_perms;
+allow dump_modem_log radio_vendor_data_file:file create_file_perms;

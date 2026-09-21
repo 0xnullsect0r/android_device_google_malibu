@@ -1,0 +1,22 @@
+type md_rfs, domain;
+type md_rfs_exec, exec_type, file_type, vendor_file_type;
+
+init_daemon_domain(md_rfs)
+
+set_prop(md_rfs, vendor_modem_prop)
+set_prop(md_rfs, vendor_nvram_prop)
+
+wakelock_use(md_rfs)
+
+allow md_rfs block_device:dir search;
+allow md_rfs gsi_metadata_file:dir search;
+allow md_rfs mnt_vendor_file:dir { getattr search };
+allow md_rfs modem_protected_file:dir create_dir_perms;
+allow md_rfs modem_protected_file:file create_file_perms;
+allow md_rfs modem_userdata_block_device:blk_file rw_file_perms;
+allow md_rfs mtk_wwan_device:chr_file rw_file_perms;
+allow md_rfs radio_vendor_data_file:dir create_dir_perms;
+allow md_rfs radio_vendor_data_file:file create_file_perms;
+allow md_rfs self:netlink_kobject_uevent_socket { bind create read setopt };
+allow md_rfs vendor_nvdata_file:dir create_dir_perms;
+allow md_rfs vendor_nvdata_file:file create_file_perms;

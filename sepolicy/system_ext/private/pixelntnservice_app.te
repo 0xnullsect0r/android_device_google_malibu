@@ -1,14 +1,9 @@
 app_domain(pixelntnservice_app)
 
-typeattribute pixelntnservice_app coredomain;
-
-get_prop(pixelntnservice_app, telephony_modemtype_prop)
-
-set_prop(pixelntnservice_app, telephony_modem_prop)
 set_prop(pixelntnservice_app, telephony_ntn_demo_mode_prop)
+set_prop(pixelntnservice_app, telephony_ril_ntn_sim_deact_prop)
 
 allow pixelntnservice_app activity_service:service_manager find;
-allow pixelntnservice_app content_capture_service:service_manager find;
 allow pixelntnservice_app gpu_service:service_manager find;
 allow pixelntnservice_app legacy_permission_service:service_manager find;
 allow pixelntnservice_app netstats_service:service_manager find;

@@ -4,5 +4,3 @@ binder_call(hal_shared_modem_platform_client, hal_shared_modem_platform_server)
 binder_call(hal_shared_modem_platform_server, hal_shared_modem_platform_client)
 
 binder_use(hal_shared_modem_platform_server)
-
-hal_attribute_service(hal_shared_modem_platform, hal_shared_modem_platform_service)

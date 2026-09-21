@@ -1,0 +1,3 @@
+allow su imsstack_app:udp_socket { create relabelfrom relabelto setattr };
+
+type_transition su self:udp_socket imsstack_app;

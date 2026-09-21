@@ -1,0 +1,10 @@
+type sap_log, domain;
+type sap_log_exec, exec_type, file_type, vendor_file_type;
+
+init_daemon_domain(sap_log)
+
+set_prop(sap_log, vendor_modem_prop)
+
+allow sap_log mtk_wwan_device:chr_file rw_file_perms;
+allow sap_log radio_vendor_data_file:dir create_dir_perms;
+allow sap_log radio_vendor_data_file:file create_file_perms;

@@ -1,3 +1,5 @@
 hal_client_domain(system_app, hal_fingerprint)
 
+binder_call(system_app, hal_wireless_charger)
+
 set_prop(system_app, fingerprint_sp_prop)

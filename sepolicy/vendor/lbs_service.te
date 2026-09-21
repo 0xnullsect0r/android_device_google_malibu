@@ -1,0 +1,23 @@
+type lbs_service, domain;
+type lbs_service_exec, exec_type, file_type, vendor_file_type;
+
+net_domain(lbs_service)
+
+add_service(lbs_service, hal_vendor_lbs_external_service)
+
+binder_call(lbs_service, hal_gnss_default)
+binder_call(lbs_service, platform_app)
+binder_call(lbs_service, servicemanager)
+binder_call(lbs_service, system_server)
+
+init_daemon_domain(lbs_service)
+
+set_prop(lbs_service, vendor_gps_prop)
+
+allow lbs_service hal_gnss_default:unix_stream_socket connectto;
+allow lbs_service mtk_wwan_device:chr_file { ioctl open read write };
+allow lbs_service self:netlink_kobject_uevent_socket { bind create read setopt };
+allow lbs_service sscoredump_device:chr_file rw_file_perms;
+allow lbs_service sysfs_modem:file { open read };
+allow lbs_service vendor_gps_file:dir create_dir_perms;
+allow lbs_service vendor_gps_file:file create_file_perms;

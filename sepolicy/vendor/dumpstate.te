@@ -1,21 +1,23 @@
-dump_hal(hal_telephony)
-
+binder_call(dumpstate, ambience_hub_default)
 binder_call(dumpstate, aocxd)
 binder_call(dumpstate, battery_mitigation)
 binder_call(dumpstate, flood_control)
 binder_call(dumpstate, hal_wlcservice)
-binder_call(dumpstate, rild)
-binder_call(dumpstate, shared_modem_platform)
+binder_call(dumpstate, imagecodec_google)
 binder_call(dumpstate, twoshay)
 
 allow dumpstate hal_battery_mitigation_service:service_manager find;
+allow dumpstate hal_secure_element_st54spi_aidl:binder call;
 allow dumpstate modem_efs_file:dir getattr;
 allow dumpstate modem_userdata_file:dir getattr;
 allow dumpstate persist_file:dir getattr;
+allow dumpstate rild:binder call;
 allow dumpstate sysfs_scsi_devices_0000:file r_file_perms;
 allow dumpstate touch_context_service:service_manager find;
 allow dumpstate twoshay_file_dump_service:service_manager find;
 
+dontaudit dumpstate gnss_manager:binder call;
 dontaudit dumpstate hal_power_stats_vendor_service:service_manager find;
 dontaudit dumpstate intelligence_data_file:dir getattr;
+dontaudit dumpstate modem_logging:binder call;
 dontaudit dumpstate vendor_dmabuf_debugfs:file r_file_perms;

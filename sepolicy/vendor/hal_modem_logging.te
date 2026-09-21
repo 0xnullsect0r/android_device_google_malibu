@@ -1,0 +1,7 @@
+type hal_modem_logging_service, hal_service_type, protected_service, service_manager_type;
+
+binder_call(hal_modem_logging_client, hal_modem_logging_server)
+
+binder_use(hal_modem_logging_server)
+
+hal_attribute_service(hal_modem_logging, hal_modem_logging_service)

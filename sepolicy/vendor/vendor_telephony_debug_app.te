@@ -1,3 +1,0 @@
-type vendor_telephony_debug_app, domain;
-
-app_domain(vendor_telephony_debug_app)

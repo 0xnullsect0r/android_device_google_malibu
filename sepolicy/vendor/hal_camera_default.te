@@ -1,7 +1,7 @@
 type lwis_device, dev_type;
+type persist_camera_file, file_type, vendor_persist_type;
 type vendor_camera_data_file, data_file_type, file_type;
 type vendor_camera_interference_avoidance_service, hal_service_type, protected_service, service_manager_type;
-type vendor_image_processing_hal_service, hal_service_type, protected_service, service_manager_type;
 
 hal_client_domain(hal_camera_default, hal_graphics_allocator)
 hal_client_domain(hal_camera_default, hal_graphics_composer)
@@ -11,13 +11,12 @@ hal_client_domain(hal_camera_default, hal_thermal)
 add_service(hal_camera_default, vendor_camera_interference_avoidance_service)
 add_service(hal_camera_default, vendor_image_processing_hal_service)
 
-binder_call(hal_camera_default, edgetpu_app_server)
 binder_call(hal_camera_default, edgetpu_tachyon_server)
 binder_call(hal_camera_default, edgetpu_vendor_server)
-binder_call(hal_camera_default, hal_aidl_radio_ext)
+binder_call(hal_camera_default, gpuservice)
+binder_call(hal_camera_default, imagecodec_google)
 binder_call(hal_camera_default, mediacodec_google)
-binder_call(hal_camera_default, sensor_service_server)
-binder_call(hal_camera_default, stats_service_server)
+binder_call(hal_camera_default, system_server)
 binder_call(hal_camera_default, vendor_pbcs_app)
 binder_call(hal_camera_default, vendor_pcs_app)
 
@@ -31,19 +30,21 @@ set_prop(hal_camera_default, vendor_camera_prop)
 
 wakelock_use(hal_camera_default)
 
-allow hal_camera_default aoc_device:chr_file rw_file_perms;
 allow hal_camera_default apex_info_file:file r_file_perms;
 allow hal_camera_default camera_binder_service:service_manager find;
 allow hal_camera_default camera_lyricconfigprovider_service:service_manager find;
 allow hal_camera_default eco_service:service_manager find;
-allow hal_camera_default edgetpu_app_service:service_manager find;
 allow hal_camera_default edgetpu_device:chr_file rw_file_perms;
+allow hal_camera_default edgetpu_tachyon_server:memfd_file { getattr map read write };
 allow hal_camera_default edgetpu_tachyon_service:service_manager find;
+allow hal_camera_default edgetpu_vendor_server:memfd_file { getattr map read write };
 allow hal_camera_default edgetpu_vendor_service:service_manager find;
 allow hal_camera_default fwk_stats_service:service_manager find;
+allow hal_camera_default gpu_service:service_manager find;
 allow hal_camera_default gxp_device:chr_file rw_file_perms;
+allow hal_camera_default hal_imagecodec_google_service:service_manager find;
 allow hal_camera_default hal_pixel_remote_camera_service:service_manager find;
-allow hal_camera_default hal_radio_ext_service:service_manager find;
+allow hal_camera_default hal_sensors_default:unix_stream_socket connectto;
 allow hal_camera_default iif_device:chr_file rw_file_perms;
 allow hal_camera_default kernel:process setsched;
 allow hal_camera_default lwis_device:chr_file rw_file_perms;
@@ -52,6 +53,10 @@ allow hal_camera_default persist_camera_file:dir rw_dir_perms;
 allow hal_camera_default persist_camera_file:file create_file_perms;
 allow hal_camera_default persist_file:dir search;
 allow hal_camera_default self:global_capability_class_set sys_nice;
+allow hal_camera_default self:memfd_file create;
+allow hal_camera_default self:memfd_file { getattr map read write };
+allow hal_camera_default sensor_data_file:dir search;
+allow hal_camera_default sensor_data_file:sock_file write;
 allow hal_camera_default sysfs_devfreq_cur:file r_file_perms;
 allow hal_camera_default sysfs_display:dir r_dir_perms;
 allow hal_camera_default sysfs_display:file r_file_perms;
@@ -60,7 +65,9 @@ allow hal_camera_default sysfs_leds:file r_file_perms;
 allow hal_camera_default tee_device:chr_file rw_file_perms;
 allow hal_camera_default vendor_camera_data_file:dir create_dir_perms;
 allow hal_camera_default vendor_camera_data_file:file create_file_perms;
+allow hal_camera_default zygote_config_prop:file read;
 
 dontaudit hal_camera_default shell_data_file:dir search;
-dontaudit hal_camera_default system_data_file:dir { read search write };
-dontaudit hal_camera_default system_userdir_file:dir { read search write };
+dontaudit hal_camera_default system_data_file:dir { add_name create getattr open read search write };
+dontaudit hal_camera_default system_data_file:file { create getattr open read write };
+dontaudit hal_camera_default system_userdir_file:dir search;

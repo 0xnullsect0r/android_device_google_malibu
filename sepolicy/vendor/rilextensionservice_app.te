@@ -1,3 +1,5 @@
 binder_call(rilextensionservice_app, rild)
 
+set_prop(rilextensionservice_app, vendor_mtk_radio_prop)
+
 allow rilextensionservice_app hal_ril_ext_service:service_manager find;

@@ -1,1 +1,1 @@
-type pixel_modem_app, domain;
+type pixel_modem_app, appdomain, coredomain, domain;

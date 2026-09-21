@@ -1,5 +1,0 @@
-type vendor_telephony_silentlogging_app, domain;
-
-app_domain(vendor_telephony_silentlogging_app)
-
-dontaudit vendor_telephony_silentlogging_app activity_service:service_manager find;

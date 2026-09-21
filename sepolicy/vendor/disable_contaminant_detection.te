@@ -1,0 +1,4 @@
+type disable_contaminant_detection, domain;
+type disable_contaminant_detection_exec, exec_type, file_type, vendor_file_type;
+
+init_daemon_domain(disable_contaminant_detection)

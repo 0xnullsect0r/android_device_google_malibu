@@ -1,0 +1,11 @@
+type modem_logging, domain;
+type modem_logging_exec, exec_type, file_type, vendor_file_type;
+
+hal_server_domain(modem_logging, hal_modem_logging)
+
+init_daemon_domain(modem_logging)
+
+allow modem_logging mdl_coll:unix_stream_socket connectto;
+
+dontaudit modem_logging dumpstate:fd use;
+dontaudit modem_logging dumpstate:fifo_file write;

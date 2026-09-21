@@ -1,0 +1,18 @@
+type nvram_daemon, domain;
+type nvram_daemon_exec, exec_type, file_type, vendor_file_type;
+
+init_daemon_domain(nvram_daemon)
+
+read_fstab(nvram_daemon)
+
+set_prop(nvram_daemon, vendor_nvram_prop)
+
+allow nvram_daemon block_device:dir search;
+allow nvram_daemon mnt_vendor_file:dir search;
+allow nvram_daemon modem_userdata_block_device:blk_file rw_file_perms;
+allow nvram_daemon mtk_wwan_device:chr_file rw_file_perms;
+allow nvram_daemon radio_vendor_data_file:dir rw_dir_perms;
+allow nvram_daemon radio_vendor_data_file:file create_file_perms;
+allow nvram_daemon sysfs_modem:file r_file_perms;
+allow nvram_daemon vendor_nvdata_file:dir create_dir_perms;
+allow nvram_daemon vendor_nvdata_file:file create_file_perms;

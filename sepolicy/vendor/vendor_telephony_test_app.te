@@ -1,3 +1,0 @@
-type vendor_telephony_test_app, domain;
-
-app_domain(vendor_telephony_test_app)

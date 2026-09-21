@@ -1,9 +1,15 @@
 type aocxd, domain;
 type aocxd_exec, exec_type, file_type, vendor_file_type;
 
+hal_client_domain(aocxd, hal_graphics_allocator)
+
 add_service(aocxd, aocx)
 
 binder_call(aocxd, dcservice_app)
+binder_call(aocxd, edgetpu_tachyon_server)
+
+get_prop(aocxd, vendor_edgetpu_runtime_prop)
+get_prop(aocxd, vendor_tflite_delegate_prop)
 
 init_daemon_domain(aocxd)
 
@@ -15,7 +21,15 @@ wakelock_use(aocxd)
 
 allow aocxd aoc_device:chr_file rw_file_perms;
 allow aocxd device:dir r_dir_perms;
+allow aocxd dmabuf_system_heap_device:chr_file r_file_perms;
 allow aocxd dumpstate:fd use;
 allow aocxd dumpstate:fifo_file write;
+allow aocxd edgetpu_device:chr_file rw_file_perms;
+allow aocxd edgetpu_tachyon_server:memfd_file { getattr map read write };
+allow aocxd edgetpu_tachyon_service:service_manager find;
+allow aocxd fwk_stats_service:service_manager find;
+allow aocxd iif_device:chr_file rw_file_perms;
 allow aocxd self:global_capability_class_set sys_nice;
 allow aocxd sysfs_aoc:dir search;
+allow aocxd traced:unix_stream_socket connectto;
+allow aocxd traced_producer_socket:sock_file write;

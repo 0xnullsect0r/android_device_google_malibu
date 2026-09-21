@@ -1,9 +1,6 @@
 app_domain(vendor_satellite_service)
 
 allow vendor_satellite_service activity_service:service_manager find;
-allow vendor_satellite_service connectivity_service:service_manager find;
-allow vendor_satellite_service content_capture_service:service_manager find;
-allow vendor_satellite_service display_service:service_manager find;
-allow vendor_satellite_service gpu_service:service_manager find;
+allow vendor_satellite_service deviceidle_service:service_manager find;
 allow vendor_satellite_service netstats_service:service_manager find;
-allow vendor_satellite_service network_management_service:service_manager find;
+allow vendor_satellite_service radio_service:service_manager find;

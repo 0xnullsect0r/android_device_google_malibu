@@ -1,3 +1,37 @@
+type sysfs_pms_displayport, fs_type, sysfs_type;
+type tcpdump_vendor_data_file, data_file_type, file_type;
+
+hal_client_domain(pixel_modem_app, hal_modem_logging)
 hal_client_domain(pixel_modem_app, hal_shared_modem_platform)
 
-allow pixel_modem_app shared_modem_platform:binder call;
+net_domain(pixel_modem_app)
+
+binder_call(pixel_modem_app, modem_logging)
+binder_call(pixel_modem_app, shared_modem_platform)
+binder_call(pixel_modem_app, twoshay)
+
+r_dir_file(pixel_modem_app, mdl_coll_data_vendor_file)
+r_dir_file(pixel_modem_app, sscoredump_vendor_data_coredump_file)
+r_dir_file(pixel_modem_app, sscoredump_vendor_data_crashinfo_file)
+r_dir_file(pixel_modem_app, sscoredump_vendor_data_logcat_file)
+r_dir_file(pixel_modem_app, tcpdump_vendor_data_file)
+
+set_prop(pixel_modem_app, logd_prop)
+set_prop(pixel_modem_app, logpersistd_logging_prop)
+set_prop(pixel_modem_app, vendor_modem_prop)
+
+allow pixel_modem_app app_api_service:service_manager find;
+allow pixel_modem_app app_data_file:lnk_file create_file_perms;
+allow pixel_modem_app audioserver_service:service_manager find;
+allow pixel_modem_app gril_antenna_tuning_service:service_manager find;
+allow pixel_modem_app radio_service:service_manager find;
+allow pixel_modem_app radio_vendor_data_file:dir rw_dir_perms;
+allow pixel_modem_app radio_vendor_data_file:file create_file_perms;
+allow pixel_modem_app radio_vendor_data_file:file rw_file_perms;
+allow pixel_modem_app sysfs_pms_displayport:file r_file_perms;
+allow pixel_modem_app tcpdump_vendor_data_file:dir create_dir_perms;
+allow pixel_modem_app tcpdump_vendor_data_file:dir rw_dir_perms;
+allow pixel_modem_app vendor_pms_data_file:dir rw_dir_perms;
+allow pixel_modem_app vendor_pms_data_file:file create_file_perms;
+allow pixel_modem_app wifi_logging_data_file:dir create_dir_perms;
+allow pixel_modem_app wifi_logging_data_file:file create_file_perms;

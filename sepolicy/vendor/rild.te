@@ -1,41 +1,34 @@
-type rild_vendor_data_file, data_file_type, file_type;
-
 add_service(rild, hal_ril_ext_service)
 add_service(rild, hal_vendor_radio_external_service)
 
-binder_call(rild, bipchmgr)
-binder_call(rild, gnssd)
-binder_call(rild, grilservice_app)
 binder_call(rild, hal_audio_default)
-binder_call(rild, hal_secure_element_uicc)
-binder_call(rild, oemrilservice_app)
+binder_call(rild, mtk_hal_secure_element)
 binder_call(rild, rilextensionservice_app)
-binder_call(rild, shared_modem_platform)
-binder_call(rild, vendor_engineermode_app)
-binder_call(rild, vendor_ims_app)
-binder_call(rild, vendor_rcs_app)
 binder_call(rild, vendor_satellite_service)
 
 crash_dump_fallback(rild)
 
-get_prop(rild, sota_prop)
-get_prop(rild, telephony_modemtype_prop)
-get_prop(rild, telephony_ntn_demo_mode_prop)
-get_prop(rild, vendor_audio_prop)
-get_prop(rild, vendor_carrier_prop)
-get_prop(rild, vendor_persist_config_default_prop)
+domain_auto_trans(rild, netutils_wrapper_exec, netutils_wrapper)
 
+get_prop(rild, sota_prop)
+get_prop(rild, telephony_ntn_demo_mode_prop)
+get_prop(rild, telephony_ril_ntn_sim_deact_prop)
+get_prop(rild, vendor_audio_prop)
+get_prop(rild, vendor_modem_prop)
+
+set_prop(rild, ims_prop)
 set_prop(rild, system_ril_ext_prop)
-set_prop(rild, telephony_ril_prop)
-set_prop(rild, vendor_imssvc_prop)
-set_prop(rild, vendor_modem_prop)
-set_prop(rild, vendor_rild_prop)
+set_prop(rild, vendor_mtk_cdma_prop)
+set_prop(rild, vendor_mtk_ims_config_prop)
+set_prop(rild, vendor_mtk_ims_eims_pdn_prop)
+set_prop(rild, vendor_mtk_ims_prop)
+set_prop(rild, vendor_mtk_radio_prop)
+set_prop(rild, vendor_mtk_ril_vote_prop)
+set_prop(rild, vendor_mtk_ss_vendor_prop)
+
+vndbinder_use(rild)
 
 allow rild hal_audio_ext_service:service_manager find;
-allow rild mnt_vendor_file:dir { getattr search };
-allow rild proc_net:file rw_file_perms;
-allow rild radio_vendor_data_file:dir create_dir_perms;
-allow rild radio_vendor_data_file:file create_file_perms;
-allow rild rild_vendor_data_file:dir create_dir_perms;
-allow rild rild_vendor_data_file:file create_file_perms;
-allow rild vendor_fw_file:file { ioctl lock };
+allow rild mtk_wwan_device:chr_file rw_file_perms;
+allow rild proc_net:file write;
+allow rild sysfs_modem:file rw_file_perms;

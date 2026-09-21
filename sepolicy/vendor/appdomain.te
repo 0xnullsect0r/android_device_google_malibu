@@ -3,4 +3,7 @@ get_prop(appdomain, vendor_gxp_prop)
 get_prop(appdomain, vendor_hetero_runtime_prop)
 get_prop(appdomain, vendor_tflite_delegate_prop)
 
+allow appdomain edgetpu_tachyon_server:memfd_file { getattr map read write };
+allow appdomain edgetpu_vendor_server:memfd_file { getattr map read write };
+
 neverallow appdomain edgetpu_device:chr_file open;

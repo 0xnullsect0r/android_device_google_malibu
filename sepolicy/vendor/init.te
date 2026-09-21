@@ -1,10 +1,15 @@
+type vendor_mdota_custom_dir, file_type, vendor_file_type;
+
 allow init boot_block_device:lnk_file relabelto;
 allow init custom_ab_block_device:lnk_file relabelto;
 allow init intelligence_data_file:dir mounton;
 allow init mnt_vendor_file:dir mounton;
+allow init modem_debug_policy_file:filesystem { mount relabelfrom };
 allow init modem_img_file:dir mounton;
-allow init modem_img_file:filesystem { getattr mount relabelfrom };
-allow init proc_vendor_sched:file w_file_perms;
+allow init modem_img_file:filesystem { mount relabelfrom };
 allow init ram_device:blk_file w_file_perms;
 allow init sysfs_scsi_devices_0000:file w_file_perms;
 allow init userdata_exp_block_device:blk_file write;
+allow init vendor_mdota_custom_dir:dir ioctl;
+
+allowxperm init vendor_mdota_custom_dir:dir ioctl BLKROSET;

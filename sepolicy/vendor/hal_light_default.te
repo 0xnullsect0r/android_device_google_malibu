@@ -1,0 +1,13 @@
+type sysfs_ext_bst, fs_type, sysfs_type;
+
+binder_call(hal_light_default, hal_contexthub_default)
+binder_call(hal_light_default, stats_service_server)
+
+get_prop(hal_light_default, vendor_chre_hal_prop)
+
+allow hal_light_default fwk_stats_service:service_manager find;
+allow hal_light_default hal_contexthub_service:service_manager find;
+allow hal_light_default hal_sensors_default:unix_stream_socket connectto;
+allow hal_light_default sensor_data_file:dir search;
+allow hal_light_default sensor_data_file:sock_file write;
+allow hal_light_default sysfs_ext_bst:file rw_file_perms;

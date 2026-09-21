@@ -1,5 +1,5 @@
 app_domain(grilservice_app)
 
-typeattribute grilservice_app coredomain;
+net_domain(grilservice_app)
 
-allow grilservice_app gpu_service:service_manager find;
+typeattribute grilservice_app coredomain;

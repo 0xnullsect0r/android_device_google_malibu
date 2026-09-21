@@ -1,0 +1,38 @@
+app_domain(imsstack_app)
+
+net_domain(imsstack_app)
+
+set_prop(imsstack_app, ims_prop)
+
+allow imsstack_app accessibility_service:service_manager find;
+allow imsstack_app activity_service:service_manager find;
+allow imsstack_app activity_task_service:service_manager find;
+allow imsstack_app alarm_service:service_manager find;
+allow imsstack_app audio_service:service_manager find;
+allow imsstack_app audioserver_service:service_manager find;
+allow imsstack_app autofill_service:service_manager find;
+allow imsstack_app cameraserver_service:service_manager find;
+allow imsstack_app connectivity_service:service_manager find;
+allow imsstack_app content_capture_service:service_manager find;
+allow imsstack_app content_service:service_manager find;
+allow imsstack_app device_state_service:service_manager find;
+allow imsstack_app display_service:service_manager find;
+allow imsstack_app gpu_service:service_manager find;
+allow imsstack_app graphicsstats_service:service_manager find;
+allow imsstack_app hint_service:service_manager find;
+allow imsstack_app input_method_service:service_manager find;
+allow imsstack_app input_service:service_manager find;
+allow imsstack_app ipsec_service:service_manager find;
+allow imsstack_app location_service:service_manager find;
+allow imsstack_app netstats_service:service_manager find;
+allow imsstack_app network_management_service:service_manager find;
+allow imsstack_app notification_service:service_manager find;
+allow imsstack_app power_service:service_manager find;
+allow imsstack_app radio_service:service_manager find;
+allow imsstack_app registry_service:service_manager find;
+allow imsstack_app sensitive_content_protection_service:service_manager find;
+allow imsstack_app sensorservice_service:service_manager find;
+allow imsstack_app textservices_service:service_manager find;
+allow imsstack_app thermal_service:service_manager find;
+allow imsstack_app virtual_device_native_service:service_manager find;
+allow imsstack_app voiceinteraction_service:service_manager find;

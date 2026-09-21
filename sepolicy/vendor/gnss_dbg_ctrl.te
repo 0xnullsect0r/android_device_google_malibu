@@ -1,0 +1,8 @@
+type gnss_dbg_ctrl, domain;
+type gnss_dbg_ctrl_exec, exec_type, file_type, vendor_file_type;
+
+init_daemon_domain(gnss_dbg_ctrl)
+
+allow gnss_dbg_ctrl gnss_daemon:unix_stream_socket connectto;
+allow gnss_dbg_ctrl vendor_gps_file:dir rw_dir_perms;
+allow gnss_dbg_ctrl vendor_gps_file:file create_file_perms;

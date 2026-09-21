@@ -5,8 +5,16 @@ binder_call(init_citadel, citadeld)
 
 init_daemon_domain(init_citadel)
 
+set_prop(init_citadel, vendor_nos_citadel_init_version_old)
+set_prop(init_citadel, vendor_nos_citadel_updates_tried)
+
 vndbinder_use(init_citadel)
 
 allow init_citadel citadel_updater:file rx_file_perms;
 allow init_citadel citadeld_service:service_manager find;
+allow init_citadel postinstall:fd use;
+allow init_citadel postinstall_file:dir r_dir_perms;
+allow init_citadel postinstall_file:file r_file_perms;
+allow init_citadel update_engine:fd use;
+allow init_citadel update_engine:fifo_file write;
 allow init_citadel vendor_toolbox_exec:file rx_file_perms;

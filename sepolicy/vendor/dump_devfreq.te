@@ -1,5 +1,6 @@
 pixel_bugreport(dump_devfreq)
 
+type sysfs_cpu, fs_type, sysfs_type;
 type sysfs_exynos_bts, fs_type, sysfs_type;
 type sysfs_exynos_bts_stats, fs_type, sysfs_type;
 

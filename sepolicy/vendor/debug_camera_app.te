@@ -1,0 +1,5 @@
+binder_call(debug_camera_app, imagecodec_google)
+
+allow debug_camera_app gpu_service:service_manager find;
+allow debug_camera_app hal_imagecodec_google_service:service_manager find;
+allow debug_camera_app mediacodec_google:memfd_file { read write };

@@ -1,0 +1,5 @@
+type vendor_aical_plugin, domain;
+
+allow vendor_aical_plugin hal_graphics_composer_default:fd use;
+allow vendor_aical_plugin hal_graphics_composer_default:fifo_file rw_file_perms;
+allow vendor_aical_plugin sysfs_display:file read;

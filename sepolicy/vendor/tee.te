@@ -15,7 +15,7 @@ allow tee fwk_vold_service:service_manager find;
 allow tee mnt_vendor_file:dir search;
 allow tee persist_file:dir search;
 allow tee persist_ss_file:dir r_dir_perms;
-allow tee persist_ss_file:lnk_file read;
+allow tee persist_ss_file:lnk_file { getattr read };
 allow tee sg_device:chr_file rw_file_perms;
 allow tee tee_data_file:lnk_file { create getattr read };
 allow tee tee_persist_block_device:blk_file rw_file_perms;

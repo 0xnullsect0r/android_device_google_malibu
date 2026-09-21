@@ -1,0 +1,15 @@
+type imagecodec_google, domain;
+type imagecodec_google_exec, exec_type, file_type, vendor_file_type;
+type jpeg_device, dev_type;
+
+dump_hal(hal_imagecodec_google)
+
+hal_client_domain(imagecodec_google, hal_graphics_allocator)
+
+add_service(imagecodec_google, hal_imagecodec_google_service)
+
+binder_use(imagecodec_google)
+
+init_daemon_domain(imagecodec_google)
+
+allow imagecodec_google jpeg_device:chr_file rw_file_perms;

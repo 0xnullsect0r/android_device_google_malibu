@@ -1,0 +1,2 @@
+type pwrctl_cmd, domain;
+type pwrctl_cmd_exec, exec_type, file_type, vendor_file_type;
