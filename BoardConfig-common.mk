@@ -19,20 +19,18 @@ TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_VARIANT := cortex-a55
 
 BOARD_BOOTCONFIG += \
-    androidboot.load_modules_parallel=true \
-    androidboot.boot_devices=3c400000.ufs
+    androidboot.load_modules_parallel=performance \
+    androidboot.boot_devices=3c2d0000.ufs
 
 BOARD_KERNEL_CMDLINE += \
-    fips140.load_sequential=1 \
-    vh_sched.load_sequential=1 \
     spmi_smartdv.load_sequential=1 \
     regmap-goog-spmi.load_sequential=1 \
     max77779_pmic.load_sequential=1 \
     max77779_pmic_spmi.load_sequential=1 \
     max77779_pmic_pinctrl.load_sequential=1 \
+    samsung_dma_heap.gcma_skip_heaps=gcma_camera_internal \
     dyndbg=\"func alloc_contig_dump_pages +p\" \
     cma_sysfs.experimental=Y \
-    cgroup.memory=nokmem \
     init_on_alloc=0 \
     init_on_free=1 \
     rcupdate.rcu_expedited=1 \
@@ -40,14 +38,19 @@ BOARD_KERNEL_CMDLINE += \
     rcutree.enable_rcu_lazy \
     swiotlb=noforce \
     disable_dma32=on \
-    sysctl.kernel.sched_pelt_multiplier=4 \
-    aoc_core.aoc_enable_gsa_boot=1 \
     rodata=on \
-    arm_smmu_v3_kvm.smc_s2=true \
+    sysctl.kernel.sched_pelt_multiplier=4 \
+    arm64.nomops \
+    aoc_core.aoc_panic_on_ssr_failure=1 \
+    aoc_core.aoc_enable_gsa_boot=1 \
+    ufs.async_probe=1 \
+    vs_drm.async_probe=1 \
+    gs_governor_dsulat.async_probe=1 \
+    arm64.nosme \
     kasan=off \
     at24.write_timeout=100 \
     log_buf_len=1024K \
-    android_arch_task_struct_size=512
+    android_arch_task_struct_size=784
 
 TARGET_NO_BOOTLOADER := true
 BOARD_PREBUILT_BOOTIMAGE := $(wildcard $(TARGET_KERNEL_DIR)/boot.img)
@@ -166,10 +169,10 @@ TARGET_COPY_OUT_VENDOR_DLKM := vendor_dlkm
 # persist.img
 BOARD_PERSISTIMAGE_FILE_SYSTEM_TYPE := f2fs
 
-BOARD_SUPER_PARTITION_SIZE := 8531214336
+BOARD_SUPER_PARTITION_SIZE := 10737418240
 BOARD_SUPER_PARTITION_GROUPS := google_dynamic_partitions
 # Set size to BOARD_SUPER_PARTITION_SIZE - overhead (4MiB) (b/182237294)
-BOARD_GOOGLE_DYNAMIC_PARTITIONS_SIZE := 8527020032
+BOARD_GOOGLE_DYNAMIC_PARTITIONS_SIZE := 10733223936
 BOARD_GOOGLE_DYNAMIC_PARTITIONS_PARTITION_LIST := \
     system \
     system_dlkm \
@@ -179,7 +182,7 @@ BOARD_GOOGLE_DYNAMIC_PARTITIONS_PARTITION_LIST := \
     vendor_dlkm
 
 # Set error limit to BOARD_SUPER_PARTITON_SIZE - 500MB
-BOARD_SUPER_PARTITION_ERROR_LIMIT := 8006926336
+BOARD_SUPER_PARTITION_ERROR_LIMIT := 10213130240
 
 # Reserve space for gapps install
 -include vendor/lineage/config/BoardConfigReservedSize.mk
