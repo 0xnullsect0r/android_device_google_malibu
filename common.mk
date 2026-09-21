@@ -19,7 +19,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     misc_writer
 
-TARGET_BOARD_PLATFORM := laguna
+TARGET_BOARD_PLATFORM := malibu
 
 AB_OTA_POSTINSTALL_CONFIG += \
 	RUN_POSTINSTALL_system=true \
@@ -31,7 +31,7 @@ PRODUCT_SOONG_NAMESPACES += \
 	hardware/google/av \
 	hardware/google/interfaces \
 	hardware/google/pixel \
-	device/google/laguna
+	device/google/malibu
 
 # Set the environment variable to switch the Keymint HAL service to Rust
 TRUSTY_KEYMINT_IMPL := rust
@@ -61,33 +61,33 @@ PRODUCT_ENFORCE_PRODUCT_PARTITION_INTERFACE := true
 # Init files
 ifeq (true,$(filter $(TARGET_BOOTS_16K) $(PRODUCT_16K_DEVELOPER_OPTION),true))
 PRODUCT_COPY_FILES += \
-	device/google/laguna/conf/init.efs.16k.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.efs.rc \
-	device/google/laguna/conf/fstab.efs.from_data:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.efs.from_data
+	device/google/malibu/conf/init.efs.16k.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.efs.rc \
+	device/google/malibu/conf/fstab.efs.from_data:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.efs.from_data
 
 PRODUCT_PACKAGES += fsck.f2fs.vendor
 else
 PRODUCT_COPY_FILES += \
-	device/google/laguna/conf/init.efs.4k.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.efs.rc
+	device/google/malibu/conf/init.efs.4k.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.efs.rc
 endif
 
 # Recovery files
 PRODUCT_COPY_FILES += \
-	device/google/laguna/conf/init.recovery.device.rc:$(TARGET_COPY_OUT_RECOVERY)/root/init.recovery.laguna.rc
+	device/google/malibu/conf/init.recovery.device.rc:$(TARGET_COPY_OUT_RECOVERY)/root/init.recovery.malibu.rc
 
 # Fstab files
 ifeq (true,$(TARGET_BOOTS_16K))
 PRODUCT_SOONG_NAMESPACES += \
-        device/google/laguna/conf/fs-16kb
+        device/google/malibu/conf/fs-16kb
 else
 PRODUCT_SOONG_NAMESPACES += \
-        device/google/laguna/conf/f2fs
+        device/google/malibu/conf/f2fs
 endif
 
 PRODUCT_PACKAGES += \
-	fstab.laguna \
-	fstab.laguna.vendor_ramdisk \
-	fstab.laguna-fips \
-	fstab.laguna-fips.vendor_ramdisk
+	fstab.malibu \
+	fstab.malibu.vendor_ramdisk \
+	fstab.malibu-fips \
+	fstab.malibu-fips.vendor_ramdisk
 
 # Insmod config files
 PRODUCT_COPY_FILES += \
@@ -211,7 +211,7 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # Use /product/etc/fstab.postinstall to mount system_other
 PRODUCT_COPY_FILES += \
-	device/google/laguna/conf/fstab.ro.postinstall:$(TARGET_COPY_OUT_PRODUCT)/etc/fstab.postinstall
+	device/google/malibu/conf/fstab.ro.postinstall:$(TARGET_COPY_OUT_PRODUCT)/etc/fstab.postinstall
 
 # fastbootd
 PRODUCT_PACKAGES += \
@@ -225,8 +225,8 @@ PRODUCT_PACKAGES += \
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
 
 PRODUCT_COPY_FILES += \
-	device/google/laguna/default-permissions.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/default-permissions/default-permissions.xml \
-	device/google/laguna/component-overrides.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/component-overrides.xml \
+	device/google/malibu/default-permissions.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/default-permissions/default-permissions.xml \
+	device/google/malibu/component-overrides.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/component-overrides.xml \
 	frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml \
 
 # Audio
@@ -284,7 +284,7 @@ PRODUCT_CHECK_PREBUILT_MAX_PAGE_SIZE := true
 
 # AiAi Config
 PRODUCT_COPY_FILES += \
-    device/google/laguna/allowlist_com.google.android.as.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/allowlist_com.google.android.as.xml
+    device/google/malibu/allowlist_com.google.android.as.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/allowlist_com.google.android.as.xml
 
 # Android Verified Boot
 PRODUCT_COPY_FILES += \
@@ -325,7 +325,7 @@ $(call soong_config_set_bool,lineage_health,charging_control_supports_toggle,fal
 
 # Linker config
 PRODUCT_VENDOR_LINKER_CONFIG_FRAGMENTS += \
-    device/google/laguna/linker.config.json
+    device/google/malibu/linker.config.json
 
 # NFC
 PRODUCT_COPY_FILES += \
@@ -341,10 +341,10 @@ PRODUCT_PACKAGES += \
 # Overlays
 PRODUCT_PACKAGES += \
     AmbientCueOverlay \
-    DMServiceOverlayProductLaguna \
+    DMServiceOverlayProductMalibu \
     EuiccSupportPixelOverlay \
-    FrameworkResOverlayProductLaguna \
-    FrameworkResOverlayVendorLaguna \
+    FrameworkResOverlayProductMalibu \
+    FrameworkResOverlayVendorMalibu \
     GlanceableHubConfigOverlay \
     GlanceableHubSettingsConfigOverlay \
     GlanceableHubSettingsConfigOverlay2022 \
@@ -355,33 +355,33 @@ PRODUCT_PACKAGES += \
     PixelConfigOverlay2021 \
     PixelConfigOverlayCommon \
     PixelConnectivityOverlay2025 \
-    PixelDisplayServiceOverlayProductLaguna \
+    PixelDisplayServiceOverlayProductMalibu \
     PixelNfcOverlayCommon \
-    PixelNfcOverlayLaguna \
+    PixelNfcOverlayMalibu \
     PixelTetheringOverlay2021 \
-    PixelWifiOverlay2025Laguna \
-    SafetyRegulatoryInfoOverlayProductLaguna \
-    SettingsGoogleOverlayProductLaguna \
-    SettingsProviderOverlayProductLaguna \
-    SettingsProviderOverlayVendorLaguna \
-    ShannonImsOverlayProductLaguna \
-    SystemUIGoogleOverlayProductLaguna \
-    SystemUIGoogleOverlayVendorLaguna \
-    TeleServiceOverlayProductLaguna \
-    TeleServiceOverlayVendorLaguna \
-    TelephonyProviderOverlayProductLaguna \
+    PixelWifiOverlay2025Malibu \
+    SafetyRegulatoryInfoOverlayProductMalibu \
+    SettingsGoogleOverlayProductMalibu \
+    SettingsProviderOverlayProductMalibu \
+    SettingsProviderOverlayVendorMalibu \
+    ShannonImsOverlayProductMalibu \
+    SystemUIGoogleOverlayProductMalibu \
+    SystemUIGoogleOverlayVendorMalibu \
+    TeleServiceOverlayProductMalibu \
+    TeleServiceOverlayVendorMalibu \
+    TelephonyProviderOverlayProductMalibu \
     TerminalOverlay
 
 PRODUCT_PACKAGES += \
-    FrameworkResOverlayLineageLaguna \
-    LineageSdkOverlayLaguna \
-    SettingsOverlayLaguna \
-    SimpleDeviceConfigOverlayLaguna
+    FrameworkResOverlayLineageMalibu \
+    LineageSdkOverlayMalibu \
+    SettingsOverlayMalibu \
+    SimpleDeviceConfigOverlayMalibu
 
 # Properties
-TARGET_PRODUCT_PROP += device/google/laguna/product.prop
-TARGET_SYSTEM_EXT_PROP += device/google/laguna/system_ext.prop
-TARGET_VENDOR_PROP += device/google/laguna/vendor.prop
+TARGET_PRODUCT_PROP += device/google/malibu/product.prop
+TARGET_SYSTEM_EXT_PROP += device/google/malibu/system_ext.prop
+TARGET_VENDOR_PROP += device/google/malibu/vendor.prop
 
 # SecureElement
 PRODUCT_COPY_FILES += \
@@ -404,11 +404,11 @@ include hardware/google/pixel/touch/device.mk
 
 # VINTF
 DEVICE_MANIFEST_FILE += \
-    device/google/laguna/vintf/manifest.xml
+    device/google/malibu/vintf/manifest.xml
 DEVICE_MATRIX_FILE += \
-    device/google/laguna/vintf/compatibility_matrix.xml
+    device/google/malibu/vintf/compatibility_matrix.xml
 DEVICE_PRODUCT_COMPATIBILITY_MATRIX_FILE += \
-    device/google/laguna/vintf/device_framework_matrix_product.xml
+    device/google/malibu/vintf/device_framework_matrix_product.xml
 
 # ZRAM writeback
 include hardware/google/pixel/mm/device_gki.mk

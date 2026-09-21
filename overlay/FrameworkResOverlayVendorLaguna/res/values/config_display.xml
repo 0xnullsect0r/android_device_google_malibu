@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-     SPDX-FileCopyrightText: The LineageOS Project
-     SPDX-License-Identifier: Apache-2.0
--->
-<resources>
-    <!-- Jar file path to look for PluginProvider -->
-    <string name="config_pluginsProviderJarPath">/system_ext/framework/laguna-plugin-provider.jar</string>
-</resources>
