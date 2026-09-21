@@ -28,7 +28,7 @@ allow mediacodec_google sysfs_gpu:file r_file_perms;
 allow mediacodec_google vendor_image_processing_hal_service:service_manager find;
 allow mediacodec_google video_device:chr_file { ioctl map open read write };
 
-neverallow mediacodec_google domain:tcp_socket *;
+neverallow mediacodec_google { domain userdebug_or_eng(`-su') }:tcp_socket *;
 neverallow mediacodec_google domain:{ rawip_socket udp_socket } *;
 neverallow mediacodec_google file_type:file execute_no_trans;
 neverallow mediacodec_google fs_type:file execute_no_trans;

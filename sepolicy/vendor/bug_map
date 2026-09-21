@@ -52,5 +52,4 @@ system_suspend sysfs_batteryinfo file b/458241018
 zygote pixeldisplayservice_app process b/458241228
 zygote proc_vendor_sched dir b/458241228
 zygote proc_vendor_sched file b/458241228
-zygote systemui_app process b/458241228
 zygote vendor_file file b/458241228

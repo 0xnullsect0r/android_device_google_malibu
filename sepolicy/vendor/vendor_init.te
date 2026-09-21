@@ -5,7 +5,6 @@ get_prop(vendor_init, vendor_brownout_br_feasible_prop)
 get_prop(vendor_init, vendor_pixel_zram_swap_size_experiment_prop)
 get_prop(vendor_init, vendor_zram_nr_tags_prop)
 
-set_prop(pixelsystemservice_app, vendor_pixel_zram_swap_size_experiment_prop)
 set_prop(vendor_init, logpersistd_logging_prop)
 set_prop(vendor_init, vendor_audio_prop)
 set_prop(vendor_init, vendor_audio_prop_restricted)
